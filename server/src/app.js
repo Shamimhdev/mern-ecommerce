@@ -1,15 +1,10 @@
 import express from "express";
+import routes from "./routes/index.js";
 
 const app = express();
 
-// Middleware
 app.use(express.json());
 
-// Test Route
-app.get("/", (req, res) => {
-  res
-    .status(200)
-    .json({ success: true, message: "Welcome to MERN Ecommerce API" });
-});
+app.use("/api/v1", routes);
 
 export default app;
