@@ -63,23 +63,16 @@ const userSchema = new mongoose.Schema(
   },
 );
 
-// Email index for faster lookups
-userSchema.index({
-  email: 1,
-});
-
 // Hash password before saving
-userSchema.pre("save", async function (next) {
+userSchema.pre("save", async function () {
   if (!this.isModified("password")) {
-    return next();
+    return;
   }
 
   this.password = await bcrypt.hash(
     this.password,
     Number(process.env.BCRYPT_SALT_ROUNDS),
   );
-
-  next();
 });
 
 // Compare password method
