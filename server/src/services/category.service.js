@@ -1,6 +1,8 @@
 import Category from "../models/category.model.js";
 import ApiError from "../utils/api-error.js";
+import ApiFeatures from "../utils/api-features.js";
 
+// Create Category
 export const createCategory = async (data, user) => {
   const existingCategory = await Category.findOne({
     name: data.name,
@@ -18,8 +20,9 @@ export const createCategory = async (data, user) => {
   return category;
 };
 
+// Get Categories
 export const getCategories = async (query) => {
-  const features = new APIFeatures(Category.find(), query)
+  const features = new ApiFeatures(Category.find(), query)
     .search("name")
     .sort()
     .paginate();
@@ -27,6 +30,7 @@ export const getCategories = async (query) => {
   return await features.query;
 };
 
+// Get Category by Slug
 export const getCategoryBySlug = async (slug) => {
   const category = await Category.findOne({ slug });
 
@@ -37,6 +41,7 @@ export const getCategoryBySlug = async (slug) => {
   return category;
 };
 
+// Update Category
 export const updateCategory = async (id, data) => {
   const category = await Category.findById(id);
 

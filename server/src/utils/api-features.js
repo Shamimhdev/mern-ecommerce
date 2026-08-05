@@ -6,9 +6,9 @@ class ApiFeatures {
 
   //   Pagination
   paginate() {
-    const page = number(this.queryString.page) || 1;
+    const page = Number(this.queryString.page) || 1;
 
-    const limit = number(this.queryString.limit) || 10;
+    const limit = Number(this.queryString.limit) || 10;
 
     const skip = (page - 1) * limit;
 
