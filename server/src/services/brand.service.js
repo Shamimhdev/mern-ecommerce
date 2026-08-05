@@ -1,5 +1,4 @@
 import Brand from "../models/brand.model.js";
-import Category from "../models/category.model.js";
 import ApiError from "../utils/api-error.js";
 import ApiFeatures from "../utils/api-features.js";
 
