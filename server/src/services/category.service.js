@@ -26,3 +26,27 @@ export const getCategories = async (query) => {
 
   return await features.query;
 };
+
+export const getCategoryBySlug = async (slug) => {
+  const category = await Category.findOne({ slug });
+
+  if (!category) {
+    throw new ApiError(404, "Category not found");
+  }
+
+  return category;
+};
+
+export const updateCategory = async (id, data) => {
+  const category = await Category.findById(id);
+
+  if (!category) {
+    throw new ApiError(404, "Category not found");
+  }
+
+  Object.assign(category, data);
+
+  await category.save();
+
+  return category;
+};

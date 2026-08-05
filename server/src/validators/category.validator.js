@@ -11,3 +11,5 @@ export const createCategorySchema = z.object({
 
   image: z.string().optional(),
 });
+
+export const updateCategorySchema = createCategorySchema.partial();
